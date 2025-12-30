@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing</title>
+  <title>TikTok Sync</title>
 </head>
 <body>
-    
+
+  <input id="username" placeholder="username tiktok">
+  <button onclick="loadTikTok()">Load</button>
+
+  <h2 id="name"></h2>
+  <img id="avatar" width="120">
+
+  <script>
+    async function loadTikTok() {
+      const username = document.getElementById("username").value;
+
+      const res = await fetch(`/api/tiktok?username=${username}`);
+      const data = await res.json();
+
+      document.getElementById("name").innerText = data.nickname;
+      document.getElementById("avatar").src = data.avatar;
+    }
+  </script>
+
 </body>
 </html>
